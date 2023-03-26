@@ -12,41 +12,19 @@ app.use(cors());
 var imageArray = new Array(0);
 var count = 0;
 
-/*should be called by ACP on load!*/
-app.post("/loadImages", (request, response) => {
-  console.log("load request received");
-  loadImages();
-  response.send(imageArray);
-})
-
-app.post("/save", (request, response) => {
-  console.log("save request received");
-  writeImages();
-})
-
-app.post("/apendImage", (request, response) => {
+app.post("/PUT/images{id}", (request, response) => {
   console.log("image received");
   if(isFull()) {
     makeSpace();
   } 
   append(request.image);
+  writeImages();
 })
 
-app.post("/insertImage", (request, response) => {
-  console.log("image and index received");
-  if(isFull()) {
-    makeSpace();
-  } 
-  insert(request.image, request.index);
-})
-
-app.post("/removeImage", (request, response) => {
+app.post("/DELETE/images/{id}", (request, response) => {
   console.log("index received");
   remove(request.index);
-})
-
-app.get("/getImages", (request, response) => {
-  response.send(imageArray);
+  writeImages();
 })
 
 function loadImages() {
@@ -69,14 +47,6 @@ function writeImages() {
 
 function append(image) {
   imageArray[count] = image;
-  count++;
-}
-
-function insert(image, index) {
-  for(var i=count-1; i > index; i--) {
-    imageArray[i] = imageArray[i+1];
-  }
-  imageArray[index] = image;
   count++;
 }
 
