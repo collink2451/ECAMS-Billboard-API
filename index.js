@@ -31,12 +31,12 @@ const upload = multer({ storage: storage });
 
 app.use(cors());
 app.use(bodyParser);
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/ping", (request, response) => {
+app.get("/ping", (req, res) => {
   console.log("Ping recieved");
-  response.type("text/plain");
-  response.send("Pong!");
+  res.type("text/plain");
+  res.send("Pong!");
 });
 
 // Images
@@ -55,18 +55,18 @@ app.delete("/api/images/:id", (req, res) => {
 });
 
 // Custom 404 page.
-app.use((request, response) => {
-  response.type("text/plain");
-  response.status(404);
-  response.send("404 - Not Found");
+app.use((req, res) => {
+  res.type("text/plain");
+  res.status(404);
+  res.send("404 - Not Found");
 });
 
 // Custom 500 page.
-app.use((err, request, response, next) => {
+app.use((err, req, res, next) => {
   console.error(err.message);
-  response.type("text/plain");
-  response.status(500);
-  response.send("500 - Server Error");
+  res.type("text/plain");
+  res.status(500);
+  res.send("500 - Server Error");
 });
 
 app.listen(port, () =>
