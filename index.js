@@ -10,6 +10,9 @@ app = express();
 const port = process.env.PORT || 3000;
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
+    if (!fs.existsSync("./public/uploads")) {
+      fs.mkdirSync("./public/uploads");
+    }
     callback(null, "./public/uploads");
   },
   filename: function (req, file, callback) {
