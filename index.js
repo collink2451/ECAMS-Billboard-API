@@ -26,6 +26,12 @@ app.use(cors());
 app.use(bodyParser);
 app.use(express.static(__dirname + "/public"));
 
+app.get("/ping", (request, response) => {
+  console.log("Ping recieved");
+  response.type("text/plain");
+  response.send("Pong!");
+});
+
 // Images
 // TODO add auth
 app.put("/api/images", upload.single("file"), (req, res) => {
