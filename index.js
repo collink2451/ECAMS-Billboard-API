@@ -13,7 +13,11 @@ const storage = multer.diskStorage({
     callback(null, "./public/uploads");
   },
   filename: function (req, file, callback) {
-    callback(null, ulid() + path.extname(file.originalname));
+    if (req.params.id) {
+      callback(null, req.params.id);
+    } else {
+      callback(null, ulid() + path.extname(file.originalname));
+    }
   },
 });
 const upload = multer({ storage: storage });
@@ -28,15 +32,12 @@ app.put("/api/images", upload.single("file"), (req, res) => {
   res.json({ filename: req.file.filename });
 });
 
+app.patch("/api/images/:id", upload.single("file"), (req, res) => {
+  res.json({ filename: req.file.filename });
+});
+
 app.delete("/api/images/:id", (req, res) => {
-  fs.unlinkSync("./public/uploads/" + req.params.id, (err) => {
-    if (err) {
-      response.type("text/plain");
-      response.status(500);
-      response.send(err);
-      return;
-    }
-  });
+  fs.unlinkSync("./public/uploads/" + req.params.id);
   res.json({ message: "File deleted" });
 });
 
