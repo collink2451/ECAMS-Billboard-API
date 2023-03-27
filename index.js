@@ -1,110 +1,44 @@
 const express = require("express");
 const bodyParser = require("body-parser").json();
 const cors = require("cors");
+const multer = require("multer");
+const { ulid } = require("ulid");
+const fs = require("fs");
+const path = require("path");
 app = express();
 
-//npm install cors
-
 const port = process.env.PORT || 3000;
+const storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, "./public/uploads");
+  },
+  filename: function (req, file, callback) {
+    callback(null, ulid() + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage: storage });
 
 app.use(cors());
+app.use(bodyParser);
+app.use(express.static(__dirname + "/public"));
 
-var imageArray = new Array(0);
-var count = 0;
+// Images
+// TODO add auth
+app.put("/api/images", upload.single("file"), (req, res) => {
+  res.json({ filename: req.file.filename });
+});
 
-app.post("/PUT/images{id}", (request, response) => {
-  console.log("image received");
-  if(isFull()) {
-    makeSpace();
-  } 
-  append(request.image);
-  writeImages();
-})
-
-app.post("/DELETE/images/{id}", (request, response) => {
-  console.log("index received");
-  remove(request.index);
-  writeImages();
-})
-
-function loadImages() {
-  var reader = new FileReader("c:\\data\\myfile.txt");
-
-    var data = reader.read();
-    var i = 0;
-    while(data != -1){
-        var imageArray = data;
-        data = reader.read();
-        i++;
+app.delete("/api/images/:id", (req, res) => {
+  fs.unlinkSync("./public/uploads/" + req.params.id, (err) => {
+    if (err) {
+      response.type("text/plain");
+      response.status(500);
+      response.send(err);
+      return;
     }
-}
-
-function writeImages() {
-  var writer = new FileWriter("public/images.txt");
-  writer.write(imageArray);
-  writer.close();
-}
-
-function append(image) {
-  imageArray[count] = image;
-  count++;
-}
-
-function remove(index) {
-  for(var i=index; i < count-1; i++) {
-    imageArray[i] = imageArray[i+1];
-  }
-  count--;
-}
-
-function isFull() {
-  if(count + 1 >= imageArray.length) {
-    return true;
-  }
-  return false;
-}
-
-function makeSpace() {
-  var newArray = new Array(imageArray.length*2);
-  for(var i=0; i < imageArray.length; i++) {
-    newArray[i] = imageArray[i];
-  }
-  imageArray = newArray;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  });
+  res.json({ message: "File deleted" });
+});
 
 // Custom 404 page.
 app.use((request, response) => {
