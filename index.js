@@ -5,7 +5,12 @@ const multer = require("multer");
 const { ulid } = require("ulid");
 const fs = require("fs");
 const path = require("path");
+const dotenv = require("dotenv");
+const db = require("./db");
+const Professor = require("./models/ProfessorModel");
 app = express();
+dotenv.config();
+db.connect();
 
 const port = process.env.PORT || 3000;
 const storage = multer.diskStorage({
@@ -52,6 +57,11 @@ app.patch("/api/images/:id", upload.single("file"), (req, res) => {
 app.delete("/api/images/:id", (req, res) => {
   fs.unlinkSync("./public/uploads/" + req.params.id);
   res.json({ message: "File deleted" });
+});
+
+app.get("/api/data", async (req, res) => {
+  const professors = await Professor.find({});
+  res.json(professors);
 });
 
 // Custom 404 page.
