@@ -60,7 +60,7 @@ app.delete("/api/images/:id", (req, res) => {
 });
 
 app.get("/api/data", async (req, res) => {
-  const professors = await Professor.find({});
+  const professors = await Professor.find({}, { _id: 0, __v: 0 });
   res.json(professors);
 });
 
