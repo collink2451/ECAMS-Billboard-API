@@ -23,9 +23,6 @@ const ProfessorSchema = new Schema({
   website: {
     type: String,
   },
-  image_name: {
-    type: String,
-  },
 });
 
 module.exports = mongoose.model("Professor", ProfessorSchema);
