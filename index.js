@@ -8,6 +8,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 const db = require("./db");
 const Professor = require("./models/ProfessorModel");
+const Banner = require("./models/BannerModel");
 app = express();
 dotenv.config();
 db.connect();
@@ -62,6 +63,11 @@ app.delete("/api/images/:id", (req, res) => {
 app.get("/api/data", async (req, res) => {
   const professors = await Professor.find({}, { _id: 0, __v: 0 });
   res.json(professors);
+});
+
+app.get("/api/banners", async (req, res) => {
+  const banners = await Banner.find({}, { _id: 0, __v: 0 });
+  res.json(banners);
 });
 
 // Custom 404 page.
