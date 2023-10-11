@@ -62,7 +62,7 @@ app.delete("/api/images/:id", (req, res) => {
 
 app.get("/api/data", async (req, res) => {
   const professors = await Professor.find({}, { _id: 0, __v: 0 });
-  professors.sort((a, b) => a.id - b.id);
+  professors.sort((a, b) => (a.name > b.name ? 1 : -1));
   res.json(professors);
 });
 
