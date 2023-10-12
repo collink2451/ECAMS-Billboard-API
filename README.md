@@ -1,4 +1,4 @@
-# HealthRiskCalculatorAPI
+# ECAMS-Billboard-API
 
 Contributors:
 
