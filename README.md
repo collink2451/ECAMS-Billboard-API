@@ -11,16 +11,29 @@ Katherine Groppe (katherinergroppe@lewisu.edu)
 Ryan Leiteritz (ryanpleiteritz@lewisu.edu)
 
 ---
-## Requirements
+## Installation
 
-For development, you will only need Node.js installed in your environement.
+1. Install [Node.js](https://nodejs.org/en/download/)
 
-## Setup
+2. Clone this repository
 
-    $ git clone https://github.com/Scrumdiddliumptious/HealthRiskCalculatorApi.git
-    $ cd HealthRiskCalculatorApi
-    $ npm i
+3. Install dependencies
 
-## Running the project
+```bash
+npm install
+```
 
-    npm run start
+4. Create a .env file in the root directory with the following variables
+
+```bash
+MONGO_URI=your_mongo_uri
+PORT = 3001
+```
+
+5. Run the server
+
+```bash
+npm start
+```
+
+6. Send all requests to [http://localhost:3001](http://localhost:3001)
