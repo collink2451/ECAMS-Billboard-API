@@ -60,8 +60,8 @@ app.delete("/api/images/:id", (req, res) => {
   res.json({ message: "File deleted" });
 });
 
-app.get("/api/data", async (req, res) => {
-  const professors = await Professor.find({}, { _id: 0, __v: 0 });
+app.get("/api/data/:department", async (req, res) => {
+  const professors = await Professor.find({department: req.params.department}, { _id: 0, __v: 0 });
   professors.sort((a, b) => (a.name > b.name ? 1 : -1));
   res.json(professors);
 });

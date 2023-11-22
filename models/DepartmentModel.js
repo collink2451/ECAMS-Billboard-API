@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ProfessorSchema = new Schema({
+const DepartmentSchema = new Schema({
   id: {
     type: String,
   },
@@ -23,9 +23,6 @@ const ProfessorSchema = new Schema({
   website: {
     type: String,
   },
-  department: {
-    type: String,
-  },
 });
 
-module.exports = mongoose.model("Professor", ProfessorSchema);
+module.exports = mongoose.model("Department", DepartmentSchema);
