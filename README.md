@@ -1,16 +1,5 @@
 # ECAMS-Billboard-API
 
-Contributors:
-
-Collin Koldoff (collinakoldoff@lewisu.edu)
-
-Justina Piwoni (justinajpiwoni@lewisu.edu)
-
-Katherine Groppe (katherinergroppe@lewisu.edu)
-
-Ryan Leiteritz (ryanpleiteritz@lewisu.edu)
-
----
 ## Installation
 
 1. Install [Node.js](https://nodejs.org/en/download/)
