@@ -1,6 +1,6 @@
 # ECAMS Billboard API
 
-REST API backend for the ECAMS (Engineering, Computing and Mathematical Sciences) department billboard system. Serves professor directory data and banner images to the public [ECAMS-Billboard-Static](../ECAMS-Billboard-Static) frontend, and handles image uploads from the [ECAMS-Billboard-ACP](../ECAMS-Billboard-ACP) admin panel.
+REST API backend for the ECAMS (Engineering, Computing and Mathematical Sciences) department billboard system. Serves professor directory data and banner images to the public [ecams-billboard-client](../ecams-billboard-client) frontend, and handles image uploads from the [ecams-billboard-acp](../ecams-billboard-acp) admin panel.
 
 ## Endpoints
 

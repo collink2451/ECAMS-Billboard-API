@@ -1,10 +1,9 @@
 {
-  "name": "app-service-hello-world",
-  "description": "Simple Hello World Node.js sample for Azure App Service",
-  "version": "0.0.1",
+  "name": "ecams-billboard-api",
+  "version": "1.0.0",
   "private": true,
   "license": "MIT",
-  "author": "Microsoft",
+  "author": "Collin Koldoff",
   "scripts": {
     "start": "nodemon index.js"
   },
@@ -18,12 +17,4 @@
     "ulid": "^2.3.0"
   },
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Scrumdiddliumptious/HealthRiskCalculatorApi.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Scrumdiddliumptious/HealthRiskCalculatorApi/issues"
-  },
-  "homepage": "https://github.com/Scrumdiddliumptious/HealthRiskCalculatorApi#readme"
 }
