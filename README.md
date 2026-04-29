@@ -1,28 +1,59 @@
-# ECAMS-Billboard-API
+# ECAMS Billboard API
 
-## Installation
+REST API backend for the ECAMS (Engineering, Computing and Mathematical Sciences) department billboard system. Serves professor directory data and banner images to the public [ECAMS-Billboard-Static](../ECAMS-Billboard-Static) frontend, and handles image uploads from the [ECAMS-Billboard-ACP](../ECAMS-Billboard-ACP) admin panel.
 
-1. Install [Node.js](https://nodejs.org/en/download/)
+## Endpoints
 
-2. Clone this repository
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/api/data/:department` | Get professors filtered by department short name |
+| `GET` | `/api/banners` | Get all banners |
+| `PUT` | `/api/images` | Upload a new banner image |
+| `PATCH` | `/api/images/:id` | Replace an existing banner image |
+| `DELETE` | `/api/images/:id` | Delete a banner image |
+| `GET` | `/ping` | Health check — returns `Pong!` |
 
-3. Install dependencies
+Uploaded images are served as static files from `/uploads/`.
+
+## Tech Stack
+
+- **Runtime:** Node.js
+- **Framework:** Express
+- **Database:** MongoDB (via Mongoose)
+- **File uploads:** Multer (stored in `public/uploads/`)
+
+## Setup
+
+### Requirements
+
+- Node.js 18+
+- MongoDB instance
+
+### Installation
+
+1. Install dependencies:
 
 ```bash
 npm install
 ```
 
-4. Create a .env file in the root directory with the following variables
+2. Create a `.env` file in the root directory:
 
-```bash
-MONGO_URI=your_mongo_uri
-PORT = 3001
+```env
+MONGO_URI=your_mongodb_connection_string
+PORT=3001
 ```
 
-5. Run the server
+3. Start the server:
 
 ```bash
 npm start
 ```
 
-6. Send all requests to [http://localhost:3001](http://localhost:3001)
+The API will be available at `http://localhost:3001`.
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start the server with nodemon (auto-restarts on changes) |
