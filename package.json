@@ -16,5 +16,5 @@
     "nodemon": "^2.0.20",
     "ulid": "^2.3.0"
   },
-  "main": "index.js",
+  "main": "index.js"
 }
